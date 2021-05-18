@@ -2,29 +2,27 @@ package com.MarashiTestExersice;
 
 public class Main {
 
-    //Question1.Is a number's all digit are even?
+    //Question2.The sum of each digit in a given number?
+     public static int sumOFDigits(int n){
 
+         int sum = 0;
+         int currentDigit = 0;
 
-       public static int isEven(int n){
+         while(n != 0) {
+             currentDigit = n % 10;
+             sum = sum + currentDigit;
+             n = n/10;
+         }
+         return sum;
 
-           int areEven = 1;
-           while (n != 0){
-               int currentDigit = n % 10;
-               if(currentDigit % 2 != 0){
-                   areEven = 0;
-                   break;
-               }
-               n = n / 10;
-           }
+     }
 
-           return areEven;
-       }
 
 
        public static void main(String[] args) {
 
-           int result = isEven(276);
-           System.out.println((result));
+           int result = sumOFDigits(127);
+           System.out.println(result);
 
 
     }}
