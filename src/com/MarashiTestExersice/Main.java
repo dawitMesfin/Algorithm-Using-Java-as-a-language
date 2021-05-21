@@ -7,91 +7,135 @@ import java.sql.SQLOutput;
 public class Main {
 
     //Question1.The sum of each digit in a given number?
-     public static int sumOFDigits(int n){
+    public static int sumOFDigits(int n) {
 
-         int sum = 0;
-         int currentDigit = 0;
+        int sum = 0;
+        int currentDigit = 0;
 
-         while(n != 0) {
-             currentDigit = n % 10;
-             sum = sum + currentDigit;
-             n = n/10;
-         }
-         return sum;
+        while (n != 0) {
+            currentDigit = n % 10;
+            sum = sum + currentDigit;
+            n = n / 10;
+        }
+        return sum;
 
-     }
+    }
 
 
-     // Question2 Is a given number prime?
+    // Question2 Is a given number prime?
 
-      public  static int isPrime(int n){
-         boolean flag = true;
-         for(int i = 2; i <= n/2; i++){
-             if(n % i == 0){
-                 flag = false;
-                 break;
-             }
-         }
-         if (flag){
-             return 1;
-         }
-         return 0;
-      }
+    public static int isPrime(int n) {
+        boolean flag = true;
+        for (int i = 2; i <= n / 2; i++) {
+            if (n % i == 0) {
+                flag = false;
+                break;
+            }
+        }
+        if (flag) {
+            return 1;
+        }
+        return 0;
+    }
 
-     //Question3 Number of prime numbers in a given range m and n
+    //Question3 Number of prime numbers in a given range m and n
 
-    public  static int numberOfPrimes(int m , int n){
-         int count = 0;
-         for(int i = m + 1; i < n; i++){
-             boolean flaging = true;
+    public static int numberOfPrimes(int m, int n) {
+        int count = 0;
+        for (int i = m + 1; i < n; i++) {
+            boolean flaging = true;
 
-             for (int j = 2; j < i/2; j ++){
-                   if (i%j==0){
-                       flaging = false;
-                       break;
-                   }
-               }
-               if (flaging){
-                   count = count +1;
-               }
-           }
-         return count;
+            for (int j = 2; j < i / 2; j++) {
+                if (i % j == 0) {
+                    flaging = false;
+                    break;
+                }
+            }
+            if (flaging) {
+                count = count + 1;
+            }
+        }
+        return count;
     }
 
     // Question4 Is the given array Magic Array?
 
-    public static int isMagic(int [] givenArray){
-         int firstElement = givenArray[0];
-         int primSum = 0;
-         for (int i = 0; i < givenArray.length; i++){
+    public static int isMagic(int[] givenArray) {
+        int firstElement = givenArray[0];
+        int primSum = 0;
+        for (int i = 0; i < givenArray.length; i++) {
 
-               boolean isPrime = true;
-               for (int j = 2; j < givenArray[i]; j++){
+            boolean isPrime = true;
+            for (int j = 2; j < givenArray[i]; j++) {
 
-                     if(givenArray[i] % j == 0){
+                if (givenArray[i] % j == 0) {
 
-                         isPrime = false;
-                         break;
-                     }
-               }
-               if (isPrime && givenArray[i] >= 0) {
-                   primSum = primSum + givenArray[i];
-               }
+                    isPrime = false;
+                    break;
+                }
+            }
+            if (isPrime && givenArray[i] >= 0) {
+                primSum = primSum + givenArray[i];
+            }
 
 
-         }
-         if (primSum == firstElement){
-             return 1;
+        }
+        if (primSum == firstElement) {
+            return 1;
 
-         }
-         return 0;
+        }
+        return 0;
+    }
+
+    // Question5 isComplete?
+
+    public static int isComplete(int[] givenArray) {
+        int max = givenArray[0];
+        int min = givenArray[0];
+
+        for (int i = 0; i < givenArray.length; i++) {
+
+            if (givenArray[i] > max && givenArray[i] % 2 == 0) {
+                max = givenArray[i];
+            }
+
+            if (givenArray[i] <= min && givenArray[i]%2 == 0){
+
+                min = givenArray[i];
+            }
+        }
+
+        if (min % 2 != 0 || max % 2 != 0) {
+            return 0;
+        }
+
+        boolean isBetweenMaxandMin = true;
+        for (int j = min + 1 ; j < max; j ++){
+            boolean found = false;
+            for (int i = 0; i < givenArray.length; i ++){
+                if (givenArray[i] == j) {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found){
+                isBetweenMaxandMin = false;
+                break;
+            }
+        }
+
+        if (max!=min && isBetweenMaxandMin){
+            return 1;
+        }
+        return 0;
     }
 
 
 
       public static void main(String[] args) {
-         int [] array = {26,13,2,5,3,3};
-      int result = isMagic(array);
+         int [] array = {900,3,7,9,5,1,2, 4, 6, 8, -4, -3, -2,-1,0};
+         int result = isComplete(array);
           System.out.println(result);
     }}
 
