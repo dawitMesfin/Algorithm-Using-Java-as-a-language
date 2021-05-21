@@ -131,6 +131,8 @@ public class Main {
         return 0;
     }
 
+    //Question6 Are all numbers in the range element of the array?
+
 
 
       public static void main(String[] args) {
