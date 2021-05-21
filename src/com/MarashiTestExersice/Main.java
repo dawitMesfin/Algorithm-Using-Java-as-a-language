@@ -133,11 +133,52 @@ public class Main {
 
     //Question6 Are all numbers in the range element of the array?
 
+     public static int areInTheArray(int [] givenArray){
+        int max = givenArray[0];
+        int min = givenArray[0];
+
+        for(int i = 0; i < givenArray.length; i++){
+
+             if (givenArray[i] >= max && givenArray[i]%2==0){
+                 max = givenArray[i];
+             }
+             if (givenArray[i] < min && givenArray[i] % 2==0 ){
+                 min = givenArray[i];
+
+             }
+         }
+        if (min == max && (min % 2!=0 || max % 2 !=0 )   ){
+
+              return 0;
+         }
+         System.out.println("max"+max);
+         System.out.println("min"+min);
+
+         boolean isBetween = true;
+         for (int j = min + 1; j < max; j++){
+              boolean isFound = false;
+              for (int i = 0; i < givenArray.length; i++){
+                 if (j == givenArray[i]){
+                     isFound = true;
+                     break;
+                 }
+
+             }
+             if (!isFound){
+                 isBetween = false;
+             }
+         }
+         if (isBetween){
+             return 1;
+         }
+         return 0;
+     }
+
 
 
       public static void main(String[] args) {
-         int [] array = {900,3,7,9,5,1,2, 4, 6, 8, -4, -3, -2,-1,0};
-         int result = isComplete(array);
+         int [] array = {10,3,7,9,5,1,2, 4, 8, -4, -3, -2,-1,0};
+         int result = areInTheArray(array);
           System.out.println(result);
     }}
 
