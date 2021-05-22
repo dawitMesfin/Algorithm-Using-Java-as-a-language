@@ -209,6 +209,31 @@ public class Main {
 
         return  0;
     }
+    //Using isItPrime method
+    public static boolean isItPrime(int n){
+        boolean flag = true;
+        for (int i = 2; i <= n/2; i++){
+            if(n%i == 0){
+                flag = false;
+                break;
+            }
+        }
+        return flag;
+    }
+
+    public static int  isItPrimeProduct(int x){
+        for (int i = 2; i <= x/2; i ++){
+            if (isItPrime(i)){
+                for(int j = 2; j <= x/2; j ++){
+                    if (isItPrime(j) && i * j == x){
+                        return 1;
+                    }
+                }
+
+            }
+        }
+        return 0;
+    }
 
 
         public static void main (String[]args){
