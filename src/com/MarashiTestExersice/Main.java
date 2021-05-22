@@ -174,11 +174,46 @@ public class Main {
          return 0;
      }
 
+     //Question7 is a given number a prime product?
+
+    public static int isPrimeProduct(int n) {
+
+        for (int i = 2; i <= n / 2; i++) {
+            boolean isPrime1 = true;
+            for (int j = 2; j < i; j++) {
+                if (i % j == 0) {
+                    isPrime1 = false;
+                    break;
+                }
+            }
+
+            if (isPrime1){
+
+            for (int j = 2; j <= n/2; j++) {
+                boolean isPrime2 = true;
+                for (int k = 2; k < j; k++) {
+                    if (j % k == 0) {
+                        isPrime2 = false;
+                        break;
+                    }
+                if (isPrime2 && i *j ==n){
+                    return 1;
+                }
+                }}
 
 
-      public static void main(String[] args) {
-         int [] array = {10,3,7,9,5,1,2, 4, 8, -4, -3, -2,-1,0};
-         int result = areInTheArray(array);
-          System.out.println(result);
-    }}
+
+
+            }
+        }
+
+        return  0;
+    }
+
+
+        public static void main (String[]args){
+            int result = isPrimeProduct(20);
+            System.out.println(result);
+        }
+    }
 
