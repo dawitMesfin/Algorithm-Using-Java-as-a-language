@@ -3,6 +3,7 @@ package com.MarashiTestExersice;
 import javax.sound.midi.Soundbank;
 import java.sql.Array;
 import java.sql.SQLOutput;
+import java.util.Arrays;
 
 public class Main {
 
@@ -235,10 +236,90 @@ public class Main {
         return 0;
     }
 
+    //Question 8 Is a given array balanced?
 
-        public static void main (String[]args){
-            int result = isPrimeProduct(20);
-            System.out.println(result);
+    public  static int isBalanced(int [] givenArray){
+
+        boolean flag = true;
+
+        for(int i = 0; i < givenArray.length; i ++){
+            boolean isIndexEven = i % 2 == 0;
+            boolean isNumberEven = givenArray[i] % 2 == 0;
+
+            if (isIndexEven && !isNumberEven) {
+                flag = false;
+                break;
+            }
+
+            if (!isIndexEven && isNumberEven) {
+                flag = false;
+                break;
+            }
+        }
+
+        if (flag) {
+            return 1;
+        }
+        return 0;
+    }
+
+    //Question 9 is a given array odd centered?
+      public static int isCentered(int [] arr){
+
+         int length = arr.length;
+          if (length % 2==0 || length < 1) {
+              return 0;
+          }
+         int middleIndex = (length - 1)/2;
+         int middleElement = arr[middleIndex];
+         for (int i = 0; i < length; i ++){
+             if (i != middleIndex && arr[i] <= middleElement) {
+                 return 0;
+             }
+          }
+
+         return 1;
+      }
+
+    //Question 10 has it k small factor?
+
+    public static boolean hasKsmallFactor(int k, int n){
+        for (int u = 1; u < k; u++){
+            for (int v = 1; v < k; v++){
+                if (u*v == n){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    //Question 11 return arr2 based on the given parameter
+
+    public static int [] fill(int [] arr,int k, int n){
+
+         if(arr.length < k || k < 0 || n < 0){
+             return null;
+         }
+         int [] arr2 = new int[n];
+         for (int i = 0; i < k; i++){
+             arr2[i] = arr[i];
+         }
+         for (int j = k; j < n; j ++) {
+             arr2[j] = arr2[j - k];
+         }
+
+         return arr2;
+    }
+
+
+
+        public static void main(String [] args){
+          int [] arr1 = {1,8,3};
+          int [] result = fill(arr1,4,7);
+            System.out.println(Arrays.toString(result));
+
+
         }
     }
 
