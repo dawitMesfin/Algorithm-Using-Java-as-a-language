@@ -1,5 +1,8 @@
 package com.MarashiTestExersice;
 
+import com.sun.source.tree.BreakTree;
+
+import javax.print.attribute.standard.PresentationDirection;
 import javax.sound.midi.Soundbank;
 import java.sql.Array;
 import java.sql.SQLOutput;
@@ -313,11 +316,163 @@ public class Main {
     }
 
 
+    // Q 12
+    public static boolean isHollow2(int[] arr) {
+        int leftCounter = 0;
+        int rightCounter = 0;
+        int zeroCounter = 0;
+
+        int state = 0;
+        int index = 0;
+
+        while (index < arr.length) {
+            switch (state) {
+                // Initial State
+                case 0: {
+                    int value = arr[index];
+                    if (value == 0) return false;
+                    state = 1;
+                    break;
+                }
+                // Left counter
+                case 1: {
+                    leftCounter++;
+                    index++;
+                    if (index >= arr.length) break;
+
+                    if (arr[index] == 0) {
+                        state = 2;
+                    }
+                    break;
+                }
+
+                // Zero counter
+                case 2: {
+                    zeroCounter++;
+                    index++;
+                    if (index >= arr.length) break;
+
+                    if (arr[index] != 0) {
+                        state = 3;
+                    }
+                    break;
+                }
+
+                // Right Counter
+                case 3: {
+                    if (zeroCounter < 3) return false;
+
+                    rightCounter++;
+                    index++;
+                    if (index >= arr.length) break;
+
+                    if (arr[index] == 0) {
+                        return false;
+                    }
+                    break;
+                }
+            }
+        }
+
+        if (zeroCounter == leftCounter && zeroCounter == rightCounter) {
+            return true;
+        }
+        return false;
+    }
+
+    //Question 12 Hollow Array
+
+    public static int isHollow(int [] a){
+
+         if (a[0] == 0 || a[a.length - 1] == 0){
+             return 0;
+         }
+         int zeroCount = 0;
+         int rightCount = 0;
+         int leftCount = 0;
+         for (int i = 0; i < a.length; i++ ){
+             if(a[i] == 0){
+                 leftCount = i;
+                 break;
+             }
+         }
+
+         int lastZeroIndex = 0;
+         for (int j = leftCount; j < a.length; j++){
+             if (a[j] != 0){
+                 zeroCount = j - leftCount;
+                 lastZeroIndex = j;
+                 break;
+             }
+         }
+
+         if (zeroCount < 3) return 0;
+         if (zeroCount != leftCount) return 0;
+
+
+         for (int k = lastZeroIndex; k < a.length; k++) {
+             if (a[k] == 0) return 0;
+
+             rightCount++;
+         }
+
+
+         if (leftCount == rightCount ){
+             return 1;
+         }
+         return 0;
+    }
+
+    // Question 13 find the min distance between factors of n
+
+    public static int minDistance (int n){
+
+             int minDistance = n;
+             for (int i = 1; i < n; i ++){
+                 if (n%i == 0){
+                     for (int j = 1; j < n; j ++){
+                         if (n % j == 0 && i > j && i - j < minDistance){
+
+                             minDistance = i - j;
+                             return minDistance;
+
+
+
+                             }
+
+                         }
+                     }
+                 }
+             return  0;
+             }
+
+   // Question 14 Wave array?
+
+
+    public static int isWave(int [] a){
+        for (int i = 0; i < a.length -1; i ++){
+            if (a[i] % 2 == 0 && a[i + 1] % 2 == 0){
+               return 0 ;
+            }
+            if (a[i] % 2 != 0 && a[i + 1] % 2 != 0){
+                return 0;
+            }
+        }
+        return 1;
+    }
+
+
+
+
+
+
+
+
 
         public static void main(String [] args){
-          int [] arr1 = {1,8,3};
-          int [] result = fill(arr1,4,7);
-            System.out.println(Arrays.toString(result));
+         int [] array = {4,5,6,7,4,8,9};
+         int result = isWave(array);
+            System.out.println(result);
 
 
         }
