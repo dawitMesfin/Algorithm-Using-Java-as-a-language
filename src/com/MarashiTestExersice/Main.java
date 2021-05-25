@@ -461,19 +461,84 @@ public class Main {
         return 1;
     }
 
+    //Question 15 digit frequency in a given number
+
+    public  static int countDigit (int n , int digit){
+        int digitFrequncy = 0;
+        while (n != 0){
+            if (n % 10 == digit ){
+                digitFrequncy++ ;
+            }
+            n = n/10;
+        }
+        return digitFrequncy;
+    }
+
+   // Question 16 is Bunker Array?
+
+    public static int isBunkerArray (int [] a){
+        for (int i = 0; i < a.length - 1; i++){
+            if (a[i] % 2 != 0){
+                boolean isPrime = true;
+                int nextNumber = a[i+1];
+
+                for (int j = 2; j <= nextNumber/2; j++){
+                    if (nextNumber % j == 0){
+                        isPrime = false;
+                        break;
+                    }
+                }
 
 
+                if (isPrime && nextNumber > 1){
+                    return 1;
+                }
 
+            }
+        }
+        return 0;
+    }
+
+  // Question 17 Is meerArray
+
+  public static int isMeerArray (int [] a){
+
+        for (int i = 0; i < a.length; i++){
+            for (int j = 0; j < a.length; j++){
+                if (2 * a[i] == a[j]){
+                    return 0;
+                }
+            }
+        }
+        return 1;
+  }
+
+  // Question 18 is it meer number? no of factors is also factor of the number
+
+    public static int isMeera (int n){
+
+        if(n ==1 ) return 0;
+        int factorCounter = 0;
+        for (int i = 2; i < n/2; i++){
+
+            if (n % i == 0){
+                factorCounter ++;
+            }
+        }
+        if (n % factorCounter == 0){
+            return 1;
+        }
+        return 0;
+    }
 
 
 
 
 
         public static void main(String [] args){
-         int [] array = {4,5,6,7,4,8,9};
-         int result = isWave(array);
+         int [] array = {2,3,9,7};
+         int result = isMeera(1);
             System.out.println(result);
-
 
         }
     }
