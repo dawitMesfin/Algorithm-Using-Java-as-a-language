@@ -862,17 +862,473 @@ public static int fibOFNum(int n){
 
 // Question 32 isBeanArray?
 
+  public static int isBeanArray(int [] a){
+        for (int i = 0; i < a.length; i++){
+            boolean isPresent = false;
+            for (int j = 0; j < a.length; j++){
+                if (a[i] - 1 == a[j] || a[i] + 1 == a[j]){
+                    isPresent = true;
+                    break;
+                }
+            }
+        if (!isPresent){
+            return 0;
+        }
+        }
+        return 1;
+  }
+
+  // Question 33 Fancy number if it is found in
+
+  public static int isFancy(int n){
+        int fancy1 = 1;
+        int fancy2 = 1;
+        int fancyNum = 0;
+        for (int i = 0; i < n; i++){
+            fancyNum = 2 * fancy1 + 3 * fancy2;
+            if (fancyNum == n){
+                return 1;
+            }
+            fancy1 = fancy2;
+            fancy2 = fancyNum;
+        }
+        return 0;
+  }
+
+ // Question 34 isMeera
+
+ public static int isMr1(int [] a){
+        for (int i = 0; i < a.length; i++){
+            boolean isPresent = false;
+            for (int j = 0; j < a.length; j++){
+                if (2*a[i] == a[j] || a[i]/2==a[j]|| (2*a[i]+1) ==a[j] ){
+                    isPresent = true;
+                    break;
+                }
+            }
+            if (!isPresent){
+                return 0;
+            }
+        }
+        return 1;
+    }
+
+ // Question 35 isBunker3
+
+ public  static int isBunker3(int n){
+        int sum = 1;
+        for (int i = 1; i < n; i++){
+            sum = sum + i;
+            if (sum == n){
+                return 1;
+        }
+
+        }
+        return 0;
+    }
+
+ // Question 36 is an element repeated twice?
+
+  public static int isDual(int [] a){
+        for (int i = 0; i < a.length; i++){
+            boolean isRepeated = false;
+            int counter = 0;
+            for (int j = 0; j < a.length; j++){
+               if (a[i] == a[j]){
+                   counter ++;
+               }
+            }
+       if (counter == 2){
+           isRepeated = true;
+       }
+       if (!isRepeated){
+           return 0;
+       }
+        }
+        return 1;
+  }
 
 
+// Question 37 Is filter array?
+
+ public static int isFilter(int [] a) {
+     for (int i = 0; i < a.length; i++) {
+         if (a[i] == 9) {
+             for (int j = 0; j < a.length; j++) {
+                 if (a[j] == 11) {
+                     return 1;
+
+                 }
+             }
+         }
+     }
+     for (int i = 0; i < a.length; i++){
+         if (a[i] == 7){
+             for (int j = 0; j < a.length; j++){
+                 if (a[j] == 13){
+                     return 0;
+                 }
+             }
+         }
+     }
+
+   return 1;
+    }
+
+// Question 38 balanced two;
+
+    public static int isBalanced2(int [] a){
+        for (int i = 0; i < a.length; i++){
+            if (a[i] % 2 == 0 && i % 2 != 0){
+                return 0;
+
+            }
+            if (a[i] % 2 != 0 && i % 2 == 0){
+                return 0;
+            }
+        }
+        return 1;
+    }
+// Question 39 is the given array odd heavy?
+    
+public static int isOddHeavy(int [] a){
+        for(int i = 0; i < a.length; i++){
+
+            boolean flag = true;
+            if (a[i] % 2 != 0){
+
+                for (int j = 0; j < a.length; j++){
+                    if (a[j] % 2 == 0 && a[i] < a[j]){
+                        flag = false;
+                    }
+                }
+            }
+
+            if (!flag){
+                return 0;
+            }
+        }
+        return 1;
+}
+
+
+// Question 40 is Normal number?
+
+ public static int isNormal(int n){
+        boolean normality = false;
+        for (int i = 2; i <= n/2; i++){
+            if (n % i == 0 && i % 2 !=0){
+                normality = true;
+            }
+            if (normality){
+                return 0;
+            }
+        }
+        return 1;
+ }
+
+ // Question 41 centered array2
+
+   public static int isCentered2(int [] a){
+        if (a.length % 2 ==0 ){
+            System.out.println(a.length);
+            return 0;
+        }
+        int indexOfCenter = (a.length -1)/2;
+        int centerElement = a[indexOfCenter];
+        boolean isGreater = true;
+        for (int i = 0; i < a.length; i++){
+            if (i != indexOfCenter && a[i] < centerElement){
+                isGreater = false;
+            }
+            if (!isGreater){
+                return 0;
+            }
+        }
+     return 1;
+ }
+
+  // Question 42 is a given array Dual?
+
+    public static int isDual2(int [] a){
+        if (a.length % 2 !=0){
+            return 0;
+        }
+        int intialSum = a[0] + a[1];
+        int eachSum = 0;
+        for (int i = 2; i < a.length; i = i+2){
+            eachSum = a[i] + a[i + 1];
+            if (eachSum != intialSum){
+                return 0;
+            }
+        }
+        return 1;
+    }
+
+  // Question 43 array all possibilities;
+
+    public static int isAllPossibilites(int [] a){
+        if (a.length == 0)
+            return 0;
+        for (int i = 0; i < a.length; i++){
+            boolean isPresent = false;
+            for (int j = 0; j < a.length; j++){
+                if (i == a[j]){
+                    isPresent = true;
+                    break;
+                }
+            }
+            if (!isPresent){
+                return 0;
+            }
+        }
+        return 1;
+    }
+
+ // Question 44 factor Two count
+
+    public  static int factor2Count(int n){
+        int count = 0;
+        while(true){
+            if (n % 2 == 0){
+                n = n/2;
+                System.out.println(n);
+                count++;
+            }
+            else {
+                break;
+            }
+        }
+        return count;
+    }
+
+ // factorTcount
+
+  public static int factorTcount(int n){
+        int count = 0;
+        while (n % 2 == 0){
+            n = n/2;
+            count ++;
+
+        }
+        return count;
+  }
+
+  // Question 45 Daphen array;
+
+    public static int isDaphne(int [] a){
+        boolean hasOdd = false;
+        for (int i = 0; i < a.length; i++){
+            if(a[i] % 2 != 0){
+                hasOdd = true;
+                break;
+            }
+        }
+        if (hasOdd){
+            int count1 = 0;
+            int count2 = 0;
+            for (int i = 0; i < a.length; i++){
+                if (a[i] % 2 != 0){
+                    count1 = i;
+                    break;
+                }
+            }
+
+           for (int i = a.length - 1; i >= 0; i--){
+
+              if (a[i] % 2 != 0){
+                count2 = a.length - i - 1;
+                break;
+
+              }
+           }
+
+            System.out.println(count1);
+            System.out.println(count2);
+        if (count1 == count2){
+            return 1;
+        }
+        }
+        return 0;
+    }
+
+  // Question 46 is goodSpread?
+
+  public static int goodSpread(int [] a){
+        boolean repeat = true;
+        for (int i = 0; i < a.length; i++){
+            int count = 0;
+            for (int j = 0; j < a.length; j++){
+                if (a[i] == a[j]){
+                    count++;
+
+                }
+            }
+            if (count > 3){
+                repeat = false;
+            }
+            if (!repeat){
+                return 0;
+            }
+        }
+        return 1;
+  }
+
+  //Question 47 sum its digits
+
+    public static int sumDigit(int n){
+        int sum = 0;
+        while (n % 10 != 0){
+            sum += n % 10;
+            n = n/10;
+        }
+        return sum;
+    }
+
+    // Question 48 is MeerArray
+
+    public static int isMeera1(int [] a){
+
+        boolean isLess = true;
+        for (int i = 0; i < a.length; i++){
+            if (a[i] > i){
+                isLess = false;
+            }
+        }
+        if (!isLess){
+            return 0;
+        }
+        return 1;
+    }
+
+    // Question 49 repeated two times?
+
+    public static int twiceRepeated(int [] a){
+
+        for (int i = 0; i < a.length; i++){
+            int count = 0;
+            for (int j = 0; j < a.length; j++){
+                if (a[i] == a[j]){
+                    count ++;
+                }
+            }
+            if (count != 2){
+                return 0;
+            }
+        }
+        return 1;
+    }
+
+    // Question 50 is Guthrie
+
+    public static int isGuthrie(int n){
+        int sum = 1;
+        for (int i = 0; i < n; i++){
+            sum += i;
+            if (sum == n){
+                return 1;
+            }
+        }
+        return 0;
+    }
+
+    // Question 51 isBn
+
+    public static int isBn(int [] a) {
+        int firstElement = a[0];
+        int primeSum = 0;
+        for (int i = 0; i < a.length; i++) {
+            boolean isprime = true;
+              for (int j = 2; j <= a[i]/2; j++){
+                  if (a[i] % j == 0){
+                      isprime = false;
+                  }
+              }
+              if (isprime){
+                  System.out.println(a[i]);
+                  primeSum += a[i];
+              }
+        }
+        if (primeSum == firstElement){
+            return 1;
+        }
+       return 0;
+    }
+
+    // Question 51 isComp1
+
+    public static int isComp1 (int [] a){
+        int maxEven = a[0];
+        for (int i = 0; i < a.length; i++){
+          if (a[i] <= 0){
+              return 0;
+          }
+          if (a[i] % 2 == 0 && a[i] > maxEven){
+              maxEven = a[i];
+          }
+        }
+        if (maxEven % 2 != 0)
+            return 0;
+        for (int k = 2; k < maxEven; k++) {
+            if (k % 2 == 0) {
+                boolean isPresent = false;
+                for (int j = 0; j < a.length; j++) {
+                    if (k == a[j]) {
+                        isPresent = true;
+                        break;
+                    }
+                }
+
+
+            if (!isPresent)
+                return 0;
+        }
+        }
+        return 1;
+    }
+
+    // fibbonci2
+
+    public static int Fib22(int n){
+        int feb1 = 0;
+        int feb2 = 1;
+        int sum = 0;
+        for (int i = 0; i < n; i++){
+            sum = feb1 + feb2;
+
+            if (sum == n){
+                return 1;
+            }
+            feb1 = feb2;
+            feb2 = sum;
+
+        }
+        return 0;
+    }
+
+    // Find nth fibonacci
+
+    public static int nthFibboncii(int n){
+        int feb1 = 1;
+        int feb2 = 1;
+        int febSum = 0;
+        for (int i = 0; i <= n; i++){
+            febSum = feb1 + feb2;
+            feb1 = feb2;
+            feb2 = febSum;
+        }
+        return febSum;
+    }
 
 
         public static void main(String [] args){
-        int[] array = { 1, 2, 1, 3, 1, 3, 2, 2} ;
+        int[] array = {2, 3, 20, 4, 11, 6, 10, 9, 8} ;
         int [] array1 = {1,0,2,2,1,0,5};
-        int result = fibOFNum(1000);
+        int result = nthFibboncii(6);
         System.out.println(result);
 
 
-}}
+ }
+ }
 
 
