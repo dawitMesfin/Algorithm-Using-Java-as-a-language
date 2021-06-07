@@ -4,6 +4,7 @@ import com.sun.source.tree.BreakTree;
 
 import javax.print.attribute.standard.PresentationDirection;
 import javax.sound.midi.Soundbank;
+import javax.swing.*;
 import java.sql.Array;
 import java.sql.SQLOutput;
 import java.util.Arrays;
@@ -1309,7 +1310,7 @@ public static int isOddHeavy(int [] a){
     // Find nth fibonacci
 
     public static int nthFibboncii(int n){
-        int feb1 = 1;
+        int feb1 = 0;
         int feb2 = 1;
         int febSum = 0;
         for (int i = 0; i <= n; i++){
@@ -1320,15 +1321,184 @@ public static int isOddHeavy(int [] a){
         return febSum;
     }
 
+ //mDistance between factors
+
+ public static int mDistance(int n){
+        int mDistance = n;
+        for (int i = 1; i <= n/2; i++) {
+            if (n % i == 0) {
+                for (int j = 1; j <= n / 2; j++) {
+                    if (n % j == 0 && i > j && mDistance > i -j){
+                        mDistance = i - j;
+                    }
+                }
+            }
+        }
+        return mDistance;
+ }
+
+ // Question 52 is wArray?
+
+ public static int isWArray(int [] a){
+        for (int i = 0; i < a.length - 1; i++){
+            if (a[i] % 2 == 0 && a[i + 1] % 2 == 0){
+                return 0;
+            }
+            if (a[i] % 2 !=0 && a[i + 1] % 2 != 0){
+                return 0;
+            }
+        }
+        return 1;
+ }
+
+ // Question 53 is paskal number
+
+    public static int isPaskal(int n){
+        int sum = 0;
+        for (int i = 1; i < n; i++){
+            sum +=i;
+            if (sum == n){
+                return 1;
+            }
+        }
+        return 0;
+    }
+
+ // Question 54 is normal second
+
+  public static int isNor(int n){
+        for (int i = 2; i <= n/2; i++){
+            if (n % i == 0 && i % 2 !=0){
+                return 0;
+            }
+        }
+        return 1;
+  }
+
+  // Question 55
+
+  public static int [] fill2(int [] arr, int k , int n){
+        if (k <= 0 || n < 0){
+            return null;
+        }
+        int arr2[] = new int[n];
+        for (int i = 0; i < k; i++){
+            arr2[i] = arr[i];
+        }
+        for (int i = k; i < n; i++){
+            arr2[i] = arr2[i - k];
+        }
+        return arr2;
+  }
+
+  // Question 56
+
+  public static boolean isSumPower(int [] arr){
+        int sum = 0;
+        for (int i = 0; i < arr.length; i++){
+            sum += arr[i];
+        }
+       int powrTwo = 1;
+        while (true){
+            powrTwo = powrTwo * 2;
+            if (sum == powrTwo){
+                return true;
+            }
+            if (sum < powrTwo){
+                break;
+            }
+        }
+        return false;
+  }
+
+
+  // Is hollow revision;
+
+    public static int isHollow3(int [] arr){
+        int leftNum = 0;
+        int rightNum = 0;
+        int zeros = 0;
+        for (int i = 0; i < arr.length; i++){
+            if (arr[i] == 0){
+                leftNum = i;
+                break;
+            }
+        }
+        for (int i = leftNum; i < arr.length; i++){
+            if (arr[i] != 0){
+                zeros = i - leftNum;
+                break;
+            }
+        }
+        for (int i = zeros + leftNum; i < arr.length; i++){
+            if (arr[i] == 0){
+                return 0;
+            }
+            else {
+                rightNum = arr.length - zeros - leftNum;
+            }
+        }
+        if (rightNum == leftNum && zeros == leftNum && rightNum >= 3){
+            return 1;
+        }
+        return 0;
+    }
+
+ // Hollow revision
+
+   public static int isHollow4 (int[] a) {
+
+        int count=a.length;
+        int zerocount=0;
+        int i;
+        int j;
+        int istart;
+        int jstart;
+
+        if(count%2==0){
+            istart=(count/2)-1;
+            jstart=count/2;
+        }else{
+            istart=count/2;
+            jstart=count/2;
+        }
+
+        for(i=istart, j=jstart; i>=0; i--, j++){
+            if(a[i]==0 && a[j]==0)
+                zerocount++;
+            else if(a[i]!=0 && a[j]!=0){
+                break;
+            }else{
+                zerocount=0;
+                break;
+            }
+        }
+
+        if(zerocount>1)
+            return 1;
+        else
+            return 0;
+
+    }
+
+
+
+
+
+
+
+
+
+
+
 
         public static void main(String [] args){
-        int[] array = {2, 3, 20, 4, 11, 6, 10, 9, 8} ;
+        int[] array = {1,2,5, 0,0,0, 4,3,4} ;
         int [] array1 = {1,0,2,2,1,0,5};
-        int result = nthFibboncii(6);
-        System.out.println(result);
-
+        int result = isHollow4(array);
+            System.out.println(result);
 
  }
- }
+}
 
 
