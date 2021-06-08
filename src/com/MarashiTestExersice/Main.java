@@ -1481,7 +1481,155 @@ public static int isOddHeavy(int [] a){
 
     }
 
+ // Prime numbers between m and n
 
+ public static int primes(int m, int n){
+        int primeCount = 0;
+        for (int i = m + 1; i < n; i++){
+              boolean primity = true;
+            for (int j = 2; j <= i/2; j++){
+                if (i % j == 0){
+                    primity = false;
+                }
+            }
+            if (primity){
+                primeCount++;
+            }
+        }
+        return primeCount;
+ }
+
+ // count max
+
+    public static int countMax(int [] a){
+        int max = a[0];
+        for (int i = 0; i < a.length; i++){
+            if (a[i] > max){
+                max = a[i];
+            }
+        }
+        int count = 0;
+        for (int i = 0; i < a.length; i++){
+            if (a[i] == max){
+                count++;
+            }
+        }
+        return count;
+    }
+
+ // Question 57 super array
+
+ public static int superArray(int [] a){
+        for (int i = 0; i < a.length; i++){
+            int sum = 0;
+            boolean flag = true;
+            for (int j = 0; j < i; j++){
+                sum += a[j];
+                if (a[i] < sum){
+                    flag = false;
+                }
+            }
+            if(!flag){
+                return 0;
+            }
+        }
+        return 1;
+ }
+
+
+ public static int trial(int [] a){
+        boolean pattern = false;
+        for(int i = 0,j = a.length - 1; i < a.length && j >=0; i++,j--){
+            if ((a[i] % 2 == 0 && a[j] % 2 == 0) || (a[i] % 2 != 0 && a[j] % 2 !=0)){
+
+                    pattern = true;
+
+            }
+            if (!pattern){
+                return 0;
+            }
+        }
+        return 1;
+    }
+
+    // trial two
+
+    public static int trial2(int [] a){
+        int lastIndex = a.length-1;
+        for (int i = 0; i < a.length; i++){
+            if (a[i] % 2 == 0 && a[lastIndex] % 2 != 0){
+                return 0;
+            }
+            if (a[i] % 2 != 0 && a[lastIndex] % 2 == 0){
+                return 0;
+
+            }
+            lastIndex --;
+        }
+        return 1;
+    }
+
+// Question 58 is even spaced?
+
+    public static int evenSpaced(int [] a){
+        int min = a[a.length - 1];
+        int max = a[0];
+        for (int i = 0; i < a.length; i++){
+            if (a[i] < min){
+                min = a[i];
+            }
+            if (a[i] > max){
+                max = a[i];
+            }
+        }
+        if ((max - min) % 2 ==0){
+            return 1;
+        }
+        return 0;
+    }
+
+    // Question 59 isEvenSubset
+
+    public static int isEvenSubset(int m, int n) {
+        boolean evenSubeset = false;
+        for (int i = 2; i <= m / 2; i++) {
+            if (m % i == 0 && i % 2 == 0) {
+                if (n % i != 0) {
+                    return 0;
+                }
+            }
+
+        }
+        return 1;
+
+    }
+
+    // Question 60 Twionoid
+
+    public static int isTwinoid(int [] a){
+        for (int i = 0; i < a.length - 1; i++){
+            if (a[i] % 2 == 0 && a[i + 1] % 2 == 0){
+                return 1;
+            }
+        }
+        return 0;
+    }
+
+    //Quesion 61 is balanced
+
+    public static int isBalanced3(int [] a){
+        for (int i = 0; i < a.length; i++){
+            boolean flag = false;
+            for (int j = 0; j < a.length; j++){
+                if (a[i]*(-1) == a[j]){
+                    flag = true;
+                }
+            }
+            if (!flag)
+                return 0;
+        }
+        return 1;
+    }
 
 
 
@@ -1493,9 +1641,9 @@ public static int isOddHeavy(int [] a){
 
 
         public static void main(String [] args){
-        int[] array = {1,2,5, 0,0,0, 4,3,4} ;
+        int[] array = {-8,-7,8,7,9} ;
         int [] array1 = {1,0,2,2,1,0,5};
-        int result = isHollow4(array);
+        int result = isBalanced3(array);
             System.out.println(result);
 
  }
