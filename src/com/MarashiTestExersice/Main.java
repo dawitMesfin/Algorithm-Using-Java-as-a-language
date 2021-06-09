@@ -426,26 +426,28 @@ public class Main {
 
     // Question 13 find the min distance between factors of n
 
-    public static int minDistance (int n){
+    public static int minDistance(int n){
+        int factor = 0;
+        int minDifferecnce = n;
+        for (int i = 2; i <= n/2; i++){
+            if (n % i == 0){
+                factor ++;
+                for (int j = 2; j <= n/2; j++){
+                    if (n % j == 0){
+                        if (i > j && i - j < minDifferecnce){
+                            minDifferecnce = i - j;
+                            System.out.println(minDifferecnce);
+                        }
+                    }
+                }
+            }
+        }
+        if (factor != 0){
+            return minDifferecnce;
+        }
+        return 0;
+    }
 
-             int minDistance = n;
-             for (int i = 1; i < n; i ++){
-                 if (n%i == 0){
-                     for (int j = 1; j < n; j ++){
-                         if (n % j == 0 && i > j && i - j < minDistance){
-
-                             minDistance = i - j;
-                             return minDistance;
-
-
-
-                             }
-
-                         }
-                     }
-                 }
-             return  0;
-             }
 
    // Question 14 Wave array?
 
@@ -1631,20 +1633,140 @@ public static int isOddHeavy(int [] a){
         return 1;
     }
 
+    //Question 62 the smallest distance b/n two none trivial factor of n
+
+  public static int isMaxMinEqual(int [] a){
+        int max = a[0];
+        int min = a[a.length - 1];
+        int maxCount = 0;
+        int minCount = 0;
+        boolean flag = false;
+        for (int i = 0; i < a.length; i++){
+            for (int j = 0; j < a.length; j++){
+                if (a[i] != a[j]){
+                    flag = true;
+                    break;
+                }
+            }
+        }
+        if (flag){
+        for (int i = 0; i < a.length; i++){
+            boolean flag2 = false;
+
+            if (a[i] > max){
+                max = a[i];
+            }
+            if (a[i] < min){
+                min = a[i];
+            }
+        }
+
+        for (int i = 0; i < a.length; i++){
+            if (a[i] == max){
+                maxCount ++;
+            }
+            if (a[i] == min){
+                minCount ++;
+            }
+        }
+        }
+      System.out.println(maxCount);
+      System.out.println(minCount);
+        if (maxCount == minCount){
+
+            return 1;
+        }
+        return 0;
+  }
+
+
+    public static int isMaxMinEqual2(int[] a) {
+        if (a.length < 2) {
+            return 0;
+        }
+
+        int max = a[0];
+        int min = a[0];
+        int maxCount = 0;
+        int minCount = 0;
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] > max) {
+                max = a[i];
+                maxCount = 1;
+            }
+            if (a[i] < min) {
+                min = a[i];
+                minCount = 1;
+            }
+            if (a[i] == max) {
+                    maxCount++;
+                }
+            if (a[i] == min) {
+                    minCount++;
+                }
+
+        }
+        if(maxCount == minCount && max != min){
+            return 1;
+        }
+return 0;
+    }
+
+    // Count D
+
+    public static int CountD(int n, int digit) {
+        if (n < 0 || digit < 0){
+            return -1;
+        }
+        int count = 0;
+        while (n !=0) {
+            if (n % 10 == digit) {
+                count++;
+
+            }
+            n = n / 10;
+        }
+        return count;
+    }
+
+    //Question 63 finding the most repeated item;
+
+    public static int isModal(int [] a) {
+        int mode = 0;
+        int count1 = 0;
+        int count2 = 0;
+        for (int i = 0; i < a.length - 1; i++) {
+            for (int j = 0; j < a.length; j++) {
+                if (a[i] == a[j]) {
+                    count1++;
+                }
+
+                if (a[i + 1] == a[j]) {
+                    mode = count2++;
+                }
+            }
+            if (count1 > count2) {
+                mode = count1;
+            }
+            mode = count2;
+
+        }
+      if (mode > 1){
+          return 1;
+      }
+      return 0;
+    }
 
 
 
 
 
 
-
-
-
-        public static void main(String [] args){
-        int[] array = {-8,-7,8,7,9} ;
+    public static void main(String [] args){
+        int[] array = {9,9,0,40} ;
         int [] array1 = {1,0,2,2,1,0,5};
-        int result = isBalanced3(array);
-            System.out.println(result);
+        int result = isModal(array);
+        System.out.println(result);
 
  }
 }
