@@ -7,7 +7,9 @@ import javax.sound.midi.Soundbank;
 import javax.swing.*;
 import java.sql.Array;
 import java.sql.SQLOutput;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Main {
 
@@ -1818,13 +1820,72 @@ public class Main {
         }
     }
 
+    public static int getMaxRepeatedNumber (int n) {
+        int maxRepeatedNumber = -1;
+        int maxReptitionCounter = 0;
 
+        int outterNum = n;
+
+        while (outterNum != 0) {
+            int digit = outterNum % 10;
+
+            int num = n;
+            int repetitionCounter = 0;
+
+            while (num != 0){
+                int innerNum = num % 10;
+                if (innerNum == digit) {
+                    repetitionCounter++;
+                }
+                num = num / 10;
+            }
+
+            if (repetitionCounter >= maxReptitionCounter) {
+                maxReptitionCounter = repetitionCounter;
+                maxRepeatedNumber = digit;
+            }
+
+            outterNum = outterNum / 10;
+        }
+
+
+
+        return maxRepeatedNumber;
+    }
+
+    public static int[] getClusterComprestion (int[] a) {
+        List<Integer> cluster = new ArrayList<Integer>();
+
+        cluster.add(a[0]);
+        for (int i = 1; i < a.length; i++) {
+            int lastClusterElement = cluster.get(cluster.size() - 1);
+
+            if (a[i] != lastClusterElement) {
+                cluster.add(a[i]);
+            }
+        }
+
+        int result[] = new int[cluster.size()];
+
+        for(int j = 0; j < cluster.size(); j++) {
+            result[j] = cluster.get(j);
+        }
+
+        return result;
+    }
+
+    public static void printArray (int[] a) {
+        for (int i = 0; i < a.length; i++) {
+            System.out.print(a[i]);
+        }
+        System.out.println();
+    }
 
     public static void main(String[] args) {
        int[] array = {1, 1, 11, 1111, 1111111};
-       int[] array1 = {2, 2, 1};
-       int result = isHolder(311);
-        System.out.println(result);
+       int[] array1 = {3,3,3,2,2,1,1,2,2,4,4};
+       int[] result = getClusterComprestion(array1);
+       printArray(result);
     }
 }
 
