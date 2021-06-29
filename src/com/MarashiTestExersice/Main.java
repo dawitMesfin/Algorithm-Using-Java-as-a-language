@@ -1881,11 +1881,22 @@ public class Main {
         System.out.println();
     }
 
+    public int getMax(int [] arr){
+        int max = arr[0];
+        for (int i = 0; i < arr.length; i++){
+            if (arr[i] > max){
+                max = arr[i];
+            }
+        }
+        return  max;
+    }
+
     public static void main(String[] args) {
+        Main stck = new Main();
        int[] array = {1, 1, 11, 1111, 1111111};
        int[] array1 = {3,3,3,2,2,1,1,2,2,4,4};
-       int[] result = getClusterComprestion(array1);
-       printArray(result);
+       int result = stck.getMax(array1);
+        System.out.println(result);
     }
 }
 
